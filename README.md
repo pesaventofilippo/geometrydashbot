@@ -1,4 +1,4 @@
-![Bot Logo](images/logo.jpg)
+![Bot Logo](images/logo.png)
 
 # GeometryDashBot
 A Telegram Bot that lets you see many GD stats, levels, info and more!  
