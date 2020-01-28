@@ -3,6 +3,7 @@ from time import sleep
 from threading import Thread
 from pony.orm import db_session
 
+from modules.api import GeometryDashApi, ApiRequestError
 from modules.database import User
 
 try:
@@ -16,6 +17,7 @@ except FileNotFoundError:
     f.close()
 
 bot = Bot(token)
+api = GeometryDashApi()
 
 
 @db_session
@@ -28,8 +30,12 @@ def reply(msg):
         User(chatId=chatId)
 
     user = User.get(chatId=chatId)
-    
-    bot.sendMessage(chatId, "Hey, <b>{}</b>!\nThis bot is still under development, check later...".format(name), parse_mode="HTML")
+
+    if text.startswith("/geticon"):
+        params = text.split(2)
+        bot.sendPhoto(chatId, api.getIcon(params[1], params[2] if len(params) > 2 else None))
+    else:
+        bot.sendMessage(chatId, "Hey, <b>{}</b>!\nThis bot is still under development, check later...".format(name), parse_mode="HTML")
 
 
 def accept_message(msg):

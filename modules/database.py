@@ -5,6 +5,7 @@ db = Database("sqlite", "../geometrydashbot.db", create_db=True)
 
 class User(db.Entity):
     chatId = Required(int)
+    userId = Optional(int)
     username = Optional(str)
     password = Optional(str)
     status = Required(str, default="normal")
