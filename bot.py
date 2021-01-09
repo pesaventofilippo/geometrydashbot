@@ -1,4 +1,4 @@
-from telepot import Bot
+from telepotpro import Bot
 from time import sleep
 from threading import Thread
 from pony.orm import db_session
